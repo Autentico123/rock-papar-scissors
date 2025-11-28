@@ -412,4 +412,18 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`🎮 Rock-Paper-Scissors server running on port ${PORT}`);
   console.log(`   Open http://localhost:${PORT} in your browser`);
+
+  // Cron job: Keep the server awake on Render free tier
+  // Pings itself every 14 minutes to prevent sleeping
+  if (process.env.RENDER) {
+    const RENDER_URL = process.env.RENDER_EXTERNAL_URL;
+    if (RENDER_URL) {
+      setInterval(() => {
+        fetch(RENDER_URL)
+          .then(() => console.log(`⏰ Keep-alive ping sent to ${RENDER_URL}`))
+          .catch((err) => console.log("Keep-alive ping failed:", err.message));
+      }, 14 * 60 * 1000); // Every 14 minutes
+      console.log(`   ⏰ Keep-alive cron job enabled for ${RENDER_URL}`);
+    }
+  }
 });
