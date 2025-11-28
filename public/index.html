@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rock Paper Scissors - Multiplayer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Queue/Loading Screen -->
+      <div id="queue-screen" class="screen active">
+        <div class="logo">
+          <h1>🪨 📄 ✂️</h1>
+          <h2>Rock Paper Scissors</h2>
+          <p class="subtitle">Multiplayer Battle</p>
+        </div>
+        <div class="queue-content">
+          <button id="join-queue-btn" class="btn btn-primary btn-large">
+            Find Match
+          </button>
+          <div id="queue-status" class="queue-status hidden">
+            <div class="loader"></div>
+            <p>Searching for opponent...</p>
+            <span class="queue-time">0:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Match Found Screen -->
+      <div id="match-found-screen" class="screen">
+        <div class="match-found-content">
+          <h2>🎯 Opponent Found!</h2>
+          <div class="versus-display">
+            <div class="player-card">
+              <div class="player-avatar">👤</div>
+              <span id="your-nickname" class="player-name">You</span>
+            </div>
+            <span class="vs-text">VS</span>
+            <div class="player-card">
+              <div class="player-avatar">👤</div>
+              <span id="opponent-nickname" class="player-name">Opponent</span>
+            </div>
+          </div>
+          <p class="starting-text">Game starting...</p>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="game-screen" class="screen">
+        <div class="game-header">
+          <div class="score-board">
+            <div class="score-player you">
+              <span class="score-name" id="game-your-name">You</span>
+              <span class="score-value" id="your-score">0</span>
+            </div>
+            <div class="score-divider">
+              <span class="round-indicator"
+                >Round <span id="round-number">1</span></span
+              >
+            </div>
+            <div class="score-player opponent">
+              <span class="score-name" id="game-opponent-name">Opponent</span>
+              <span class="score-value" id="opponent-score">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-area">
+          <!-- Status Messages -->
+          <div id="game-status" class="game-status">
+            <p id="status-message">Make your choice!</p>
+          </div>
+
+          <!-- Choice Display Area -->
+          <div class="choices-display">
+            <div class="choice-reveal">
+              <div class="player-choice-box">
+                <span class="choice-label">You</span>
+                <div id="your-choice-display" class="choice-icon">❓</div>
+              </div>
+              <div class="vs-badge">VS</div>
+              <div class="player-choice-box">
+                <span class="choice-label">Opponent</span>
+                <div id="opponent-choice-display" class="choice-icon">❓</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Choice Buttons -->
+          <div id="choice-buttons" class="choice-buttons">
+            <button class="choice-btn" data-choice="rock">
+              <span class="choice-emoji">🪨</span>
+              <span class="choice-text">Rock</span>
+            </button>
+            <button class="choice-btn" data-choice="paper">
+              <span class="choice-emoji">📄</span>
+              <span class="choice-text">Paper</span>
+            </button>
+            <button class="choice-btn" data-choice="scissors">
+              <span class="choice-emoji">✂️</span>
+              <span class="choice-text">Scissors</span>
+            </button>
+          </div>
+
+          <!-- Waiting indicator after choosing -->
+          <div id="waiting-indicator" class="waiting-indicator hidden">
+            <div class="mini-loader"></div>
+            <p>Waiting for opponent...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Screen -->
+      <div id="result-screen" class="screen">
+        <div class="result-content">
+          <div id="result-icon" class="result-icon">🏆</div>
+          <h2 id="result-title" class="result-title">You Win!</h2>
+          <p id="result-subtitle" class="result-subtitle">Congratulations!</p>
+
+          <div class="final-score">
+            <div class="final-score-player">
+              <span id="final-your-name">You</span>
+              <span id="final-your-score" class="final-score-value">2</span>
+            </div>
+            <span class="final-score-divider">-</span>
+            <div class="final-score-player">
+              <span id="final-opponent-name">Opponent</span>
+              <span id="final-opponent-score" class="final-score-value">1</span>
+            </div>
+          </div>
+
+          <div class="result-actions">
+            <button id="rematch-btn" class="btn btn-primary">
+              🔄 Play Again
+            </button>
+            <button id="new-match-btn" class="btn btn-secondary">
+              🔍 Find New Match
+            </button>
+          </div>
+
+          <div id="rematch-status" class="rematch-status hidden">
+            <div class="mini-loader"></div>
+            <p>Waiting for opponent's response...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disconnection Modal -->
+      <div id="disconnect-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-icon">😢</div>
+          <h3>Opponent Disconnected</h3>
+          <p>Your opponent has left the game.</p>
+          <button id="back-to-queue-btn" class="btn btn-primary">
+            Find New Match
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "rock-paper-scissors-multiplayer",
+  "version": "1.0.0",
+  "description": "A 1v1 Rock Paper Scissors multiplayer game with matchmaking",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "rock-paper-scissors",
+    "multiplayer",
+    "game",
+    "socket.io",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "type": "commonjs"
+}

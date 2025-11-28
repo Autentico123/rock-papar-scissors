@@ -1,0 +1,726 @@
+/**
+ * Rock Paper Scissors - Multiplayer Game Styles
+ * Modern, clean, and mobile-friendly design
+ */
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary-color: #64748b;
+  --success-color: #22c55e;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --background: #0f172a;
+  --surface: #1e293b;
+  --surface-light: #334155;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --border-radius: 16px;
+  --transition: all 0.3s ease;
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Container */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Screen Management */
+.screen {
+  display: none;
+  padding: 20px;
+  min-height: 100vh;
+  animation: fadeIn 0.4s ease;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== QUEUE SCREEN ==================== */
+.logo {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.logo h1 {
+  font-size: 4rem;
+  margin-bottom: 10px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.logo h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--primary-color), #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo .subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-top: 5px;
+}
+
+.queue-content {
+  text-align: center;
+}
+
+.queue-status {
+  margin-top: 30px;
+  padding: 30px;
+  background: var(--surface);
+  border-radius: var(--border-radius);
+  animation: fadeIn 0.3s ease;
+}
+
+.queue-status p {
+  margin: 15px 0 10px;
+  font-size: 1.1rem;
+}
+
+.queue-time {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* Loader Animation */
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--surface-light);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+.mini-loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--surface-light);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  margin: 0 auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ==================== BUTTONS ==================== */
+.btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: "Poppins", sans-serif;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+  color: white;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.btn-secondary {
+  background: var(--surface-light);
+  color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+  background: #475569;
+}
+
+.btn-large {
+  padding: 18px 48px;
+  font-size: 1.2rem;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ==================== MATCH FOUND SCREEN ==================== */
+.match-found-content {
+  text-align: center;
+  animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.match-found-content h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--success-color);
+}
+
+.versus-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.player-card {
+  background: var(--surface);
+  padding: 25px 35px;
+  border-radius: var(--border-radius);
+  text-align: center;
+}
+
+.player-avatar {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.player-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.vs-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--warning-color);
+}
+
+.starting-text {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ==================== GAME SCREEN ==================== */
+#game-screen {
+  padding-top: 20px;
+  justify-content: flex-start;
+}
+
+.game-header {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.score-board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  padding: 15px 20px;
+  border-radius: var(--border-radius);
+}
+
+.score-player {
+  text-align: center;
+  flex: 1;
+}
+
+.score-name {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.score-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.score-player.you .score-value {
+  color: var(--primary-color);
+}
+
+.score-player.opponent .score-value {
+  color: var(--danger-color);
+}
+
+.score-divider {
+  padding: 0 20px;
+}
+
+.round-indicator {
+  background: var(--surface-light);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Game Area */
+.game-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.game-status {
+  text-align: center;
+  margin: 20px 0;
+}
+
+#status-message {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.status-win {
+  color: var(--success-color);
+}
+.status-lose {
+  color: var(--danger-color);
+}
+.status-draw {
+  color: var(--warning-color);
+}
+
+/* Choices Display */
+.choices-display {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.choice-reveal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.player-choice-box {
+  background: var(--surface);
+  padding: 20px 30px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  min-width: 120px;
+}
+
+.choice-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.choice-icon {
+  font-size: 3rem;
+  transition: var(--transition);
+}
+
+.choice-icon.reveal {
+  animation: revealChoice 0.5s ease;
+}
+
+@keyframes revealChoice {
+  0% {
+    transform: scale(0) rotate(-180deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.vs-badge {
+  font-weight: 700;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Choice Buttons */
+.choice-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.choice-btn {
+  background: var(--surface);
+  border: 3px solid var(--surface-light);
+  padding: 20px 25px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+}
+
+.choice-btn:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.choice-btn:active {
+  transform: translateY(-2px);
+}
+
+.choice-btn.selected {
+  border-color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.choice-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.choice-emoji {
+  font-size: 2.5rem;
+}
+
+.choice-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Waiting Indicator */
+.waiting-indicator {
+  margin-top: 30px;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.waiting-indicator p {
+  margin-top: 15px;
+  color: var(--text-secondary);
+}
+
+/* ==================== RESULT SCREEN ==================== */
+.result-content {
+  text-align: center;
+  animation: scaleIn 0.5s ease;
+}
+
+.result-icon {
+  font-size: 5rem;
+  margin-bottom: 20px;
+  animation: bounce 1s ease;
+}
+
+.result-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.result-title.win {
+  color: var(--success-color);
+}
+.result-title.lose {
+  color: var(--danger-color);
+}
+
+.result-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.final-score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 40px;
+  background: var(--surface);
+  padding: 25px 40px;
+  border-radius: var(--border-radius);
+}
+
+.final-score-player {
+  text-align: center;
+}
+
+.final-score-player span:first-child {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.final-score-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.final-score-divider {
+  font-size: 2rem;
+  color: var(--text-secondary);
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.rematch-status {
+  margin-top: 20px;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: var(--border-radius);
+}
+
+.rematch-status p {
+  margin-top: 10px;
+  color: var(--text-secondary);
+}
+
+/* ==================== MODAL ==================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: var(--surface);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  max-width: 400px;
+  margin: 20px;
+}
+
+.modal-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.modal-content p {
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
+/* ==================== UTILITIES ==================== */
+.hidden {
+  display: none !important;
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 3rem;
+  }
+
+  .logo h2 {
+    font-size: 1.5rem;
+  }
+
+  .versus-display {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .player-card {
+    padding: 20px 40px;
+  }
+
+  .choice-buttons {
+    gap: 10px;
+  }
+
+  .choice-btn {
+    padding: 15px 20px;
+    min-width: 90px;
+  }
+
+  .choice-emoji {
+    font-size: 2rem;
+  }
+
+  .score-board {
+    padding: 12px 15px;
+  }
+
+  .score-value {
+    font-size: 1.5rem;
+  }
+
+  .player-choice-box {
+    padding: 15px 20px;
+    min-width: 100px;
+  }
+
+  .choice-icon {
+    font-size: 2.5rem;
+  }
+
+  .result-title {
+    font-size: 2rem;
+  }
+
+  .final-score {
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .final-score-value {
+    font-size: 2rem;
+  }
+
+  .btn {
+    padding: 12px 24px;
+  }
+
+  .btn-large {
+    padding: 16px 40px;
+    font-size: 1.1rem;
+  }
+}
+
+/* Landscape mode adjustments */
+@media (max-height: 600px) {
+  .screen {
+    padding: 10px 20px;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+  }
+
+  .logo h1 {
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+  }
+
+  .logo h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Animations for round results */
+@keyframes winAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loseAnimation {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.animate-win {
+  animation: winAnimation 0.5s ease;
+}
+
+.animate-lose {
+  animation: loseAnimation 0.3s ease;
+}
